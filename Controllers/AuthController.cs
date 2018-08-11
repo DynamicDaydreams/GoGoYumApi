@@ -15,6 +15,7 @@ using GoGoYumApi.Models.ApiModels;
 using GoGoYumApi.Models.Entities;
 using GoGoYumApi.Services.Contracts;
 using GoGoYumApi.Common;
+using AspNet.Security.OAuth.Validation;
 
 namespace GoGoYumApi.Controllers
 {
@@ -42,7 +43,7 @@ namespace GoGoYumApi.Controllers
         {
             if (request.IsPasswordGrantType())
             {
-               
+
                 var user = _userManager.Users.Where(t => t.UserName.ToLower() == request.Username.ToLower()).FirstOrDefault();
 
                 if (user == null)
@@ -86,6 +87,22 @@ namespace GoGoYumApi.Controllers
             else
             {
                 return BadRequest(results.Errors);
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = OAuthValidationDefaults.AuthenticationScheme)]
+        [HttpGet]
+        [Route("api/auth/validate")]
+        public async Task<IActionResult> ValidateAuth()
+        {
+            var currentUser = await _userService.GetCurrentUser();
+            if (currentUser != null)
+            {
+                return Ok(new { tokenValid = true });
+            }
+            else
+            {
+                return Ok(new { tokenValid = false });
             }
         }
     }
