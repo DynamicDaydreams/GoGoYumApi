@@ -1,0 +1,15 @@
+version: 1.0.{build}
+configuration: Release
+clone_depth: 1
+before_build:
+- cmd: dotnet restore
+- cmd: dotnet publish --configuration %configuration%
+artifacts:
+- path: bin/%configuration%/netcoreapp2.0/publish
+  name: GoGoYumApi
+  type: zip
+deploy:
+# - provider: Environment
+#   name: GoGoYumAPI
+#   on:
+#     branch: master
