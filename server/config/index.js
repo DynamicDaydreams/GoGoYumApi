@@ -11,7 +11,7 @@ const prepareConfiguation = () => {
             settings: environmentConfig.sequelizeConfig.settings
         },
         jwt: {
-            auidence: environmentConfig.jwt.auidence,
+            serviceId: environmentConfig.jwt.serviceId,
             issuers: {
                 client: {
                     publicKey: environmentConfig.jwt.issuers.client.publicKey

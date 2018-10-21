@@ -33,7 +33,8 @@ import { createToken } from '../../../utils/authUtils';
  *            type: string
  *            example: { 
  *              "userName": "swagger", 
- *              "password": "swagger"
+ *              "password": "swagger", 
+ *              "email": "test@swagger.com"
  *            }
  *     responses:
  *       200:
@@ -48,24 +49,25 @@ const extract = request => {
         throw new Error(validationResults.error);
     }
 
-    let { userName, password } = request.body;
+    let { userName, password, email } = request.body;
 
     const hash = crypto.createHash('sha256');
     hash.update(password);
     password = hash.digest('hex')
 
-    return { userName, password };
+    return { userName, password, email };
 }
 
 const bodySchema = {
     userName: Joi.string().required(),
-    password: Joi.string().required()
+    password: Joi.string().required(),
+    email: Joi.string().email()
 }
 
 const execute = async (request, params) => {
-    let { userName, password } = params;
+    let { userName, password, email } = params;
 
-    await addUser({ userName, passwordHash: password });
+    await addUser({ userName, passwordHash: password, email: email });
 
     var user = await getUser(userName, password);
 
@@ -73,12 +75,13 @@ const execute = async (request, params) => {
         throw new Error('User failed to add');
     }
 
-    return prepareResults(userName, user._id);
+    return prepareResults(userName, email, user._id);
 }
 
-const prepareResults = (userName, id) => {
+const prepareResults = (userName, email, id) => {
     return {
         userName,
+        email,
         id
     }
 }

@@ -10,7 +10,7 @@ const environmentConfig = {
         }
     },
     jwt: {
-        auidence: 'gogoyum-api',
+        serviceId: 'gogoyum-api',
         issuers: {
             client: {
                 publicKey: '2262CE66E91F8EE3A48A6F4B76353'

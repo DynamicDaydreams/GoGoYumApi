@@ -9,6 +9,8 @@ import { getUserById } from '../../../data/queries/userQueries';
  *     properties:
  *       userName:
  *         type: string
+ *       email: 
+ *         type: string
  *       id:
  *         type: string
  * 
@@ -25,7 +27,7 @@ import { getUserById } from '../../../data/queries/userQueries';
  *       200:
  *         description: User profile information
  *         schema:
- *          $ref: '#/definitions/heartbeatResults'
+ *          $ref: '#/definitions/userProfileResults'
  */
 const extract = request => {
 
@@ -37,15 +39,14 @@ const extract = request => {
 const execute = async (request, params) => {
     const { userId } = params
 
-
-
     var results = await getUserById(userId);
-    return prepareResponse(results.userName, results.id)
+    return prepareResponse(results.userName, results.email, results.id)
 }
 
-const prepareResponse = (userName, id) => {
+const prepareResponse = (userName, email, id) => {
     return {
         userName,
+        email,
         id
     }
 }
