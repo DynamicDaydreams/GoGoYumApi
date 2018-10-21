@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 const swaggerSpec = swaggerJSDoc({
     swaggerDefinition: {
         info: {
-            title: "API - " + config.environmentName,
+            title: "GoGoYum API - " + config.environmentName,
             version: "1.0.0"
         },
         securityDefinitions: {
