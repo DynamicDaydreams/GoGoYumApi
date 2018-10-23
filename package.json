@@ -28,7 +28,8 @@
     "sqlite3": "^4.0.2",
     "swagger-jsdoc": "^3.0.2",
     "swagger-tools": "^0.10.4",
-    "swagger-ui": "^3.18.2"
+    "swagger-ui": "^3.18.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.3",
