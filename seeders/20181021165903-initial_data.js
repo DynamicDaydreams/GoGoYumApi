@@ -36,8 +36,8 @@ module.exports = {
 
     await queryInterface.bulkInsert('Users',
       [
-        { id: adminUserUuid, userName: 'admin', passwordHash: '8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918', email: 'admin@admin.com', createdAt: new Date(), updatedAt: new Date() },
-        { id: swaggerUserUuid, userName: 'swagger', passwordHash: '0447C783C9E903A0B8C60A93665E6F5C9159DD1F4E2D2AD0456DF83EAB7FBD2C', email: 'swagger@swagger.com', createdAt: new Date(), updatedAt: new Date() },
+        { id: adminUserUuid, userName: 'admin', passwordHash: '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', email: 'admin@admin.com', createdAt: new Date(), updatedAt: new Date() },
+        { id: swaggerUserUuid, userName: 'swagger', passwordHash: '0447c783c9e903a0b8c60a93665e6f5c9159dd1f4e2d2ad0456df83eab7fbd2c', email: 'swagger@swagger.com', createdAt: new Date(), updatedAt: new Date() },
       ]
     );
 

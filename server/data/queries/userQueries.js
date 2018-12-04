@@ -8,8 +8,8 @@ const getUsers = async () => {
 const getUser = async (userName, passwordHash) => {
     let user = await User.findOne({
         where: {
-            userName,
-            passwordHash
+            userName: userName.toLowerCase(),
+            passwordHash: passwordHash.toLowerCase()
         }
     });
     return user;
