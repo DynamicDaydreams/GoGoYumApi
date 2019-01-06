@@ -1,34 +1,33 @@
 import authTypes from '../../../constants/authTypes';
 import regularHandler from '../../../utils/requestHandler';
-import { getUserById } from '../../../data/queries/userQueries';
+import { getRecipes } from '../../../data/queries/recipeQueries';
 
 /**
  * @swagger
- * /api/v1/verify:
+ * /api/v1/recipes:
  *   get:
  *     tags:
  *       - API
- *     description: Returns a boolean determining if token is valid
+ *     description: Returns a list of recipes
  *     produces:
  *       - application/json
  *     security: 
  *       - ServerBearerAuth: []
  *     responses:
  *       200:
- *         description: A boolean that says the token is valid
+ *         description: List of recipes
  */
 const extract = request => {
     return {};
 }
 
 const execute = async (request, params) => {
-    return prepareResponse()
+    var results = await getRecipes();
+    return prepareResponse(results)
 }
 
-const prepareResponse = () => {
-    return {
-        valid: true
-    }
+const prepareResponse = (recipes) => {
+    return { recipes }
 }
 
 export default {
